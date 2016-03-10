@@ -1,0 +1,15 @@
+
+<div class="home-container"
+  layout="column"
+  layout-align="center center"
+  layout-padding
+  layout-margin
+  layout-fill>
+
+    <div class="game-title" layout="row" layout-margin layout-padding>
+      <div ng-repeat="item in title track by $index">{{item}}</div>
+    </div>
+
+    <a class="play" ui-sref="game">play</a>
+</div>
+

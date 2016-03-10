@@ -1,0 +1,20 @@
+
+
+// home styles
+
+div.home-container {
+  background-color: black;
+
+  div.game-title {
+    div {
+      font-size: 100px;
+      background-color: gray;
+    }
+  }
+
+  a.play {
+    font-size: 30px;
+    color: white;
+    text-decoration: none;
+  }
+}
