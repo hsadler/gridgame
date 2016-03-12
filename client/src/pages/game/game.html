@@ -1,2 +1,18 @@
 
-<h1>im the game...</h1>
+<div class="game-container" layout-fill>
+
+  <div layout="column" layout-align="space-around" layout-fill>
+
+    <div ng-repeat="col in grid track by $index"
+      layout="row"
+      layout-align="space-around"
+      flex>
+
+      <div class="game-square" ng-repeat="square in col" flex></div>
+
+    </div>
+
+  </div>
+
+</div>
+

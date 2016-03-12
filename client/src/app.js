@@ -7,9 +7,7 @@ var app = angular.module('gridgameApp', [
 
 
 // routing
-app.config(function($stateProvider, $urlRouterProvider) {
-
-  $urlRouterProvider.otherwise('/');
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
   $stateProvider
     .state('home', {
@@ -22,6 +20,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'pages/game/game.html',
       controller: 'GameCtrl'
     });
+
+    $urlRouterProvider.otherwise('/');
+
+    $locationProvider.html5Mode(true);
 
 });
 

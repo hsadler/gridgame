@@ -1,2 +1,15 @@
 
+* {
+  // border: 1px dotted blue;
+}
+
 // game styles
+
+div.game-container {
+  background-color: black;
+
+  div.game-square {
+    background-color: black;
+    border: 1px solid gray;
+  }
+}
