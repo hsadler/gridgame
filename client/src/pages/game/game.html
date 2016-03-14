@@ -1,18 +1,23 @@
 
-<div class="game-container" layout-fill>
 
-  <div layout="column" layout-align="space-around" layout-fill>
+<div class="game-container" layout="row" layout-fill layout-align="center center">
 
-    <div ng-repeat="col in grid track by $index"
-      layout="row"
-      layout-align="space-around"
-      flex>
+  <svg ng-style="gameStyle">
 
-      <div class="game-square" ng-repeat="square in col" flex></div>
+    <g>
 
-    </div>
+      <rect
+        ng-repeat="square in grid"
+        ng-style="{'width': (100 / options.gridSize) + '%', 'height': (100 / options.gridSize) + '%'}"
+        ng-attr-x="{{square.x / options.gridSize * 100}}%"
+        ng-attr-y="{{square.y / options.gridSize * 100}}%"
+        ng-attr-fill="{{square.color}}"
+      />
 
-  </div>
+    </g>
+
+  </svg>
 
 </div>
+
 
