@@ -11,7 +11,7 @@
         ng-style="{'width': (100 / options.gridSize) + '%', 'height': (100 / options.gridSize) + '%'}"
         ng-attr-x="{{square.x / options.gridSize * 100}}%"
         ng-attr-y="{{square.y / options.gridSize * 100}}%"
-        ng-attr-fill="{{square.color}}"
+        ng-attr-fill="{{square.alive ? 'lime' : 'black'}}"
       />
 
     </g>

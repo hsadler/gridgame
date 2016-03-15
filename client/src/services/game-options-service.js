@@ -6,8 +6,8 @@ app.factory('GameOptionsService', [
     function() {
 
       var service = {
-        gridSize: 100,
-        squareSize: 6
+        gridSize: 31,
+        squareSize: 20
       };
 
       return service;
