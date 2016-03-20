@@ -28,12 +28,15 @@ app.factory('GameSquareConstructor', [
         return gameGrid[nHash] || null;
       };
 
-      GameSquare.prototype.modifyNeighbors = function(gameGrid, cb) {
+      GameSquare.prototype.processNeighbors = function(gameGrid, cb) {
+        var neighbors = [];
         for(var direction in neighborDict) {
-          if(this.getNeighbor(direction, gameGrid)) {
-            cb(this.getNeighbor(direction, gameGrid));
+          var neighbor = this.getNeighbor(direction, gameGrid);
+          if(neighbor) {
+            neighbors.push(neighbor);
           }
         }
+        cb(neighbors);
       };
 
       return GameSquare;

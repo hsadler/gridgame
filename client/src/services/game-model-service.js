@@ -10,7 +10,6 @@ app.factory('GameModelService', ['$interval', '$timeout', 'GameOptionsService', 
         return Math.floor((Math.random() * max) + min);
       };
 
-
       var options = GameOptionsService;
 
       var service = {
@@ -24,38 +23,71 @@ app.factory('GameModelService', ['$interval', '$timeout', 'GameOptionsService', 
         }
       }
 
-      console.log(service.grid);
+      // set game rules
+      var secludedOverpopulatedDies = function(sq, neighbors, update) {
+        if(sq.alive) {
+          var neighborsAlive = 0;
+          neighbors.forEach(function(n) {
+            if(n.alive) {
+              neighborsAlive++;
+            }
+          });
+          if(neighborsAlive < 2 || neighborsAlive > 3) {
+            update(sq);
+          }
+        }
+      };
 
-      // for grid play
-      // $interval(function() {
-      //   var randX = randInt(0, options.gridSize);
-      //   var randY = randInt(0, options.gridSize);
-      //   var square = service.grid[randX + 'x' + randY + 'y'];
-      //   square.alive = !square.alive;
-      // }, 100);
+      var justRightReproduces = function(sq, neighbors, update) {
+        if(!sq.alive) {
+          var neighborsAlive = 0;
+          neighbors.forEach(function(n) {
+            if(n.alive) {
+              neighborsAlive++;
+            }
+          });
+          if(neighborsAlive === 3) {
+            update(sq);
+          }
+        }
+      };
+
+      var rules = [secludedOverpopulatedDies, justRightReproduces];
 
 
-      //testing
-      // var square = service.grid['14x14y'];
-      // square.modifyNeighbors(service.grid, function(neigh) {
-      //   neigh.alive = !neigh.alive;
-      // });
+      // set squares as alive
+      for(var loc in service.grid) {
+        if(Math.random() > 0.5) {
+          service.grid[loc].alive = true;
+        }
+      }
 
-      service.grid['15x15y'].alive = true;
 
+      // run game
       $interval(function() {
 
         var currSq;
+        var toUpdate = [];
+
         for(var loc in service.grid) {
           currSq = service.grid[loc];
-          if(currSq.alive) {
-            currSq.modifyNeighbors(service.grid, function(neigh) {
-              neigh.alive = !neigh.alive;
+          currSq.processNeighbors(service.grid, function(neighbors) {
+
+            // process rules
+            rules.forEach(function(rule) {
+              rule(currSq, neighbors, function(sq) {
+                toUpdate.push(sq);
+              });
             });
-          }
+
+          });
         }
 
-      }, 200);
+        toUpdate.forEach(function(sq) {
+          sq.alive = !sq.alive;
+        });
+
+      }, options.speed);
 
 
       return service;

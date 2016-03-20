@@ -8,9 +8,11 @@ app.controller('GameCtrl', ['$scope', '$interval', 'GameOptionsService', 'GameMo
       $scope.options = GameOptionsService;
       $scope.grid = GameModelService.grid;
 
-      $scope.gameStyle = {
-        'width': $scope.options.gridSize * $scope.options.squareSize,
-        'height': $scope.options.gridSize * $scope.options.squareSize
+      $scope.gameStyle = function() {
+        return {
+          'width': $scope.options.gridSize * $scope.options.squareSize,
+          'height': $scope.options.gridSize * $scope.options.squareSize
+        };
       };
 
     }
