@@ -6,10 +6,16 @@
   layout-margin
   layout-fill>
 
-    <div class="game-title" layout="row" layout-margin layout-padding>
-      <div ng-repeat="item in title track by $index">{{item}}</div>
+    <div class="game-title" layout="row"layout-align="center center" layout-margin layout-padding>
+      <div
+        ng-repeat="item in title track by $index"
+        ng-style="{'background-color': '{{item === ' ' ? 'black' : 'gray'}}'}"
+      >
+        {{item}}
+
+      </div>
     </div>
 
-    <a class="play" ui-sref="game">play</a>
+    <a class="start" ui-sref="game">start</a>
 </div>
 

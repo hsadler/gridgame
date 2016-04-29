@@ -1,4 +1,4 @@
-# Grid Game
+# Game of Life
 
-> An idea for a grid type game
+> Conway's Game of Life
 
